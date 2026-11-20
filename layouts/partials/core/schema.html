@@ -1,0 +1,62 @@
+{{- $d := .Site.Data.home -}}
+{{- $business := dict
+  "@context" "https://schema.org"
+  "@type" "LocalBusiness"
+  "@id" "https://www.birdcast.me/#business"
+  "name" "Birdcast Podcast Studio"
+  "legalName" "Birdcast Entertainment Services LLC"
+  "description" .Site.Params.description
+  "url" "https://www.birdcast.me/"
+  "logo" ("/img/header-logo.png" | absURL)
+  "image" ("/img/studio-dip.jpg" | absURL)
+  "telephone" "+971561886153"
+  "email" "hi@birdcast.me"
+  "priceRange" "$$"
+  "address" (dict
+    "@type" "PostalAddress"
+    "streetAddress" "Arenco Building 4, Level 6, Office 611, Dubai Investment Park 1"
+    "addressLocality" "Dubai"
+    "addressCountry" "AE")
+  "openingHoursSpecification" (slice (dict
+    "@type" "OpeningHoursSpecification"
+    "dayOfWeek" (slice "Monday" "Tuesday" "Wednesday" "Thursday" "Friday" "Saturday" "Sunday")
+    "opens" "09:00"
+    "closes" "22:00"))
+  "aggregateRating" (dict
+    "@type" "AggregateRating"
+    "ratingValue" ($d.reviews_rating | default "5.0")
+    "reviewCount" (index (split ($d.reviews_rating_label | default "65") " ") 0)
+    "bestRating" "5")
+  "founder" (dict "@type" "Person" "name" "Baligh Mhanna")
+  "hasMap" "https://maps.app.goo.gl/sQDpoQH8JqqSR7aM9"
+  "sameAs" (slice
+    "https://www.instagram.com/birdcaststudio/"
+    "https://www.facebook.com/people/Birdcast-Studio/61551065531375/")
+-}}
+<script type="application/ld+json">{{ $business | jsonify | safeJS }}</script>
+{{- if not .IsHome }}
+{{- $crumbs := dict
+  "@context" "https://schema.org"
+  "@type" "BreadcrumbList"
+  "itemListElement" (slice
+    (dict "@type" "ListItem" "position" 1 "name" "Home" "item" ("/" | absURL))
+    (dict "@type" "ListItem" "position" 2 "name" .Title "item" .Permalink))
+-}}
+<script type="application/ld+json">{{ $crumbs | jsonify | safeJS }}</script>
+{{- end }}
+{{- if .IsHome }}
+{{- $qs := slice -}}
+{{- range $i := seq 1 20 -}}
+  {{- $q := index $d (printf "faq_%d_question" $i) -}}
+  {{- if $q -}}
+    {{- $parts := slice -}}
+    {{- range $j := seq 1 10 -}}
+      {{- with index $d (printf "faq_%d_answer_%d" $i $j) }}{{ $parts = $parts | append . }}{{ end -}}
+    {{- end -}}
+    {{- $qs = $qs | append (dict "@type" "Question" "name" $q "acceptedAnswer" (dict "@type" "Answer" "text" (delimit $parts " "))) -}}
+  {{- end -}}
+{{- end -}}
+{{- if $qs }}
+<script type="application/ld+json">{{ dict "@context" "https://schema.org" "@type" "FAQPage" "mainEntity" $qs | jsonify | safeJS }}</script>
+{{- end }}
+{{- end }}

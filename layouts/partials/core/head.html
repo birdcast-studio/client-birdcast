@@ -7,6 +7,27 @@
   <title>{{ .Params.seo_title | default .Title | default .Site.Title }}</title>
   <meta name="description" content="{{ .Params.seo_description | default .Params.description | default .Site.Params.description }}">
 
+  {{- $title := .Params.seo_title | default .Title | default .Site.Title -}}
+  {{- $desc := .Params.seo_description | default .Params.description | default .Site.Params.description -}}
+  {{- $img := (.Params.og_image | default .Site.Params.og_image) | absURL -}}
+  <link rel="canonical" href="{{ .Permalink }}">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Birdcast">
+  <meta property="og:title" content="{{ $title }}">
+  <meta property="og:description" content="{{ $desc }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  <meta property="og:image" content="{{ $img }}">
+  <meta property="og:locale" content="en_AE">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $title }}">
+  <meta name="twitter:description" content="{{ $desc }}">
+  <meta name="twitter:image" content="{{ $img }}">
+
+  <link rel="icon" type="image/png" href="/img/header-logo.png">
+
+  {{ partial "core/schema.html" . }}
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
