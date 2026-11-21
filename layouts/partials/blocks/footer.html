@@ -44,11 +44,13 @@
       <nav class="site-footer__services" aria-label="Footer services">
         <h3>{{ $d.footer_services_title }}</h3>
 
-        <a href="https://booking.birdcast.me" target="_blank" rel="noopener noreferrer">{{ $d.footer_service_1_label }}</a>
-        <a href="{{ $d.footer_service_2_url }}">{{ $d.footer_service_2_label }}</a>
-        <a href="{{ $d.footer_service_3_url }}" target="_blank" rel="noopener noreferrer">{{ $d.footer_service_3_label }}</a>
-        <a href="{{ $d.footer_service_4_url }}" target="_blank" rel="noopener noreferrer">{{ $d.footer_service_4_label }}</a>
-        <a href="{{ $d.footer_service_5_url }}" target="_blank" rel="noopener noreferrer">{{ $d.footer_service_5_label }}</a>
+        {{ range $i := seq 1 5 }}
+          {{ $url := index $d (printf "footer_service_%d_url" $i) }}
+          {{ $label := index $d (printf "footer_service_%d_label" $i) }}
+          {{ if $label }}
+            <a href="{{ $url }}"{{ if hasPrefix $url "http" }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ $label }}</a>
+          {{ end }}
+        {{ end }}
       </nav>
 
       <div class="site-footer__contact">
@@ -108,6 +110,18 @@
         </div>
       </div>
     </div>
+
+    {{ $seo := where .Site.RegularPages "Type" "seo" }}
+    {{ with $seo }}
+    <nav class="site-footer__explore" aria-label="Studios and services in Dubai">
+      <h3>Studios &amp; services in Dubai</h3>
+      <ul>
+        {{ range sort . "Title" }}
+          <li><a href="{{ .RelPermalink }}">{{ .Title | replaceRE " in Dubai$" "" }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ end }}
 
     <div class="site-footer__bottom">
       <p>{{ $d.footer_copyright }}</p>

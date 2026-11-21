@@ -1,7 +1,14 @@
-baseURL = "/"
+baseURL = "https://www.birdcast.me/"
 languageCode = "en-us"
 title = "Birdcast Podcast Studio Dubai"
-disableKinds = ["taxonomy", "term", "RSS", "sitemap", "robotsTXT"]
+disableKinds = ["taxonomy", "term", "RSS"]
+enableRobotsTXT = true
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
 
 [params]
   description = "Professional podcast studios and video production in Dubai for founders, brands, creators and corporate teams."
+  og_image = "/img/studio-dip.jpg"
