@@ -1,0 +1,30 @@
+{{- $ga := "G-4B3VC3RSCR" -}}
+{{- $pixel := "" -}}
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ $ga }}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ $ga }}', { cookie_domain: 'birdcast.me' });
+  {{- if $pixel }}
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '{{ $pixel }}'); fbq('track', 'PageView');
+  {{- end }}
+  // Conversion clicks: booking buttons and contact links.
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var h = a.getAttribute('href') || '';
+    var label = (a.innerText || a.getAttribute('aria-label') || '').trim().slice(0, 60);
+    if (/booking\.birdcast\.me/i.test(h)) {
+      gtag('event', 'book_click', { link_url: h, link_text: label, page_path: location.pathname });
+      if (window.fbq) fbq('trackCustom', 'BookClick');
+      return;
+    }
+    var m = /wa\.me|whatsapp/i.test(h) ? 'whatsapp' : /^tel:/i.test(h) ? 'phone' : /^mailto:/i.test(h) ? 'email' : '';
+    if (m) {
+      gtag('event', 'generate_lead', { method: m, link_url: h, page_path: location.pathname });
+      if (window.fbq) fbq('track', 'Contact');
+    }
+  }, true);
+</script>
