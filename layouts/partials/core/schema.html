@@ -50,6 +50,7 @@
   {{- $q := index $d (printf "faq_%d_question" $i) -}}
   {{- if $q -}}
     {{- $parts := slice -}}
+    {{- with index $d (printf "faq_%d_answer" $i) }}{{ $parts = $parts | append . }}{{ end -}}
     {{- range $j := seq 1 10 -}}
       {{- with index $d (printf "faq_%d_answer_%d" $i $j) }}{{ $parts = $parts | append . }}{{ end -}}
     {{- end -}}
