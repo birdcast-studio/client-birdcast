@@ -7257,7 +7257,7 @@ html.birdcasters-modal-open body {
 /* ===== /packages/ — client-facing price sheet ===== */
 .pk-body { background: var(--bc-deep); color: var(--bc-light); }
 .pk { max-width: 1240px; margin: 0 auto; padding: 120px 24px 80px; }
-.pk-hero { max-width: 760px; margin-bottom: 40px; }
+.pk-hero { max-width: 760px; margin-bottom: 28px; }
 .pk-eyebrow { color: var(--bc-blue-bright); font-size: 13px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 12px; }
 .pk-hero h1 { font-size: clamp(32px, 5vw, 52px); line-height: 1.05; font-weight: 800; margin: 0 0 16px; color: var(--bc-white); }
 .pk-lead { font-size: 17px; line-height: 1.6; color: var(--bc-muted-light); margin: 0; }
