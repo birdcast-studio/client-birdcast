@@ -1,0 +1,68 @@
+{{ partial "core/head.html" . }}
+{{- $wa := "https://wa.me/971561886153?text=Hi%20Birdcast%2C%20I%27d%20like%20to%20book%20a%20podcast%20session" -}}
+{{- $book := "https://booking.birdcast.me" -}}
+{{- $map := "https://maps.app.goo.gl/sQDpoQH8JqqSR7aM9" -}}
+{{- $yes := "M20 6 9 17l-5-5" -}}
+{{- $packages := slice
+  (dict "name" "Video & Audio Recording" "tag" "Show up ready to record, or bring your videographer" "price" "399" "b5" "1,795.50" "b10" "3,391.50" "featured" false
+    "inc" (slice (slice "3× Blackmagic 4K cameras" true) (slice "Shure SM7B microphones" true) (slice "Full studio lighting setup" true) (slice "Choose any podcast set" true) (slice "Technician on set" true) (slice "Live camera switching with synced audio & video" false) (slice "Dedicated producer to edit your episode" false))
+    "after" (slice (slice "Raw audio & video files to your own drive" true) (slice "Raw files uploaded & delivered within 24 hrs" true) (slice "Raw footage backed up for 14 days" true) (slice "Live-mixed episode with synced cameras & audio" false) (slice "Fully edited episode, audio mastering & colour" false) (slice "Your logo/music added, unwanted parts removed" false)))
+  (dict "name" "Recording + Live Camera Cut" "tag" "Walk out with a ready-to-publish show" "price" "550" "b5" "2,475" "b10" "4,675" "featured" false
+    "inc" (slice (slice "3× Blackmagic 4K cameras" true) (slice "Shure SM7B microphones" true) (slice "Full studio lighting setup" true) (slice "Choose any podcast set" true) (slice "Technician on set" true) (slice "Live camera switching with synced audio & video" true) (slice "Dedicated producer to edit your episode" false))
+    "after" (slice (slice "Raw audio & video files to your own drive" true) (slice "Raw files uploaded & delivered within 24 hrs" true) (slice "Raw footage backed up for 14 days" true) (slice "Live-mixed episode with synced cameras & audio" true) (slice "Fully edited episode, audio mastering & colour" false) (slice "Your logo/music added, unwanted parts removed" false)))
+  (dict "name" "Recording + Edit" "tag" "A polished show with a professional finish" "price" "800" "b5" "3,600" "b10" "6,800" "featured" true
+    "inc" (slice (slice "3× Blackmagic 4K cameras" true) (slice "Shure SM7B microphones" true) (slice "Full studio lighting setup" true) (slice "Choose any podcast set" true) (slice "Technician on set" true) (slice "Live camera switching with synced audio & video" true) (slice "Dedicated producer to edit your episode" true))
+    "after" (slice (slice "Raw audio & video files to your own drive" true) (slice "Raw files uploaded & delivered within 24 hrs" true) (slice "Raw footage backed up for 14 days" true) (slice "Live-mixed episode with synced cameras & audio" true) (slice "Fully edited episode, audio mastering & colour" true) (slice "Your logo/music added, unwanted parts removed" true)))
+-}}
+<body class="pk-body">
+  {{ partial "blocks/header.html" . }}
+  <main class="pk">
+    <section class="pk-hero">
+      <p class="pk-eyebrow">Birdcast Podcast Studio · Dubai</p>
+      <h1>Podcast studio packages &amp; prices</h1>
+      <p class="pk-lead">Broadcast-quality recording in Dubai Investment Park, run by a team with 30 years at the BBC, CNN, Sky Sports and Bloomberg. Every session includes three 4K cameras, Shure SM7B mics, full lighting and a technician on set.</p>
+    </section>
+
+    <section class="pk-grid" aria-label="Packages">
+      {{ range $packages }}
+      <article class="pk-card{{ if .featured }} pk-card--featured{{ end }}">
+        {{ if .featured }}<div class="pk-ribbon">Best value</div>{{ end }}
+        <h2>{{ .name }}</h2>
+        <p class="pk-tag">{{ .tag }}</p>
+        <p class="pk-price">AED {{ .price }}<span> / hour</span></p>
+        <div class="pk-bundles">
+          <div><strong>5 sessions</strong><span>AED {{ .b5 }}</span><em>Save 10%</em></div>
+          <div><strong>10 sessions</strong><span>AED {{ .b10 }}</span><em>Save 15%</em></div>
+        </div>
+        <h3>What's included</h3>
+        <ul>
+          {{ range .inc }}<li class="{{ if index . 1 }}yes{{ else }}no{{ end }}">{{ index . 0 }}</li>{{ end }}
+        </ul>
+        <h3>After the session</h3>
+        <ul>
+          {{ range .after }}<li class="{{ if index . 1 }}yes{{ else }}no{{ end }}">{{ index . 0 }}</li>{{ end }}
+        </ul>
+        <a class="pk-btn{{ if .featured }} pk-btn--primary{{ end }}" href="{{ $book }}" target="_blank" rel="noopener">Book this package</a>
+      </article>
+      {{ end }}
+    </section>
+    <p class="pk-note">Prices exclude 5% VAT. Bundles are pre-paid and can be used across any studio set. Add-ons such as teleprompter, extra camera, reels and thumbnails are available at booking.</p>
+
+    <section class="pk-location">
+      <div>
+        <p class="pk-eyebrow">Our studio</p>
+        <h2>Birdcast Podcast Studio – DIP</h2>
+        <p>Arenco Building 4, Level 6, Office 611<br>Dubai Investment Park 1, Dubai</p>
+        <p>Open daily, 9AM – 10PM</p>
+      </div>
+      <div class="pk-actions">
+        <a class="pk-btn pk-btn--primary" href="{{ $map }}" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="pk-btn" href="{{ $wa }}" target="_blank" rel="noopener">WhatsApp us</a>
+        <a class="pk-btn" href="{{ $book }}" target="_blank" rel="noopener">Book a session</a>
+      </div>
+    </section>
+  </main>
+  {{ partial "blocks/footer.html" . }}
+  {{ partial "core/scripts.html" . }}
+</body>
+</html>
