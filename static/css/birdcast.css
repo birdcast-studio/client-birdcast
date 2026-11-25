@@ -7293,3 +7293,9 @@ html.birdcasters-modal-open body {
 .pk-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 @media (max-width: 1000px) { .pk-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; } .pk-hero { text-align: left; } }
 @media (max-width: 560px) { .pk { padding: 96px 16px 56px; } .pk-location { padding: 24px 20px; } .pk-actions { width: 100%; } .pk-actions .pk-btn { flex: 1 1 100%; } }
+
+/* Floating WhatsApp button */
+.wa-float { position: fixed; right: 20px; bottom: 20px; z-index: 9999; display: flex; align-items: center; gap: 10px; height: 60px; padding: 0 15px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 700; font-size: 15px; text-decoration: none; box-shadow: 0 8px 24px rgba(0,0,0,.35); transition: transform .2s ease, box-shadow .2s ease; }
+.wa-float:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0,0,0,.45); }
+.wa-float__label { padding-right: 6px; }
+@media (max-width: 760px) { .wa-float { right: 14px; bottom: 14px; width: 58px; height: 58px; padding: 0; justify-content: center; } .wa-float__label { display: none; } }
