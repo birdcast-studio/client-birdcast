@@ -5,9 +5,9 @@
 {{- $yes := "M20 6 9 17l-5-5" -}}
 {{- $base := slice "3× 4K Blackmagic cameras" "Shure SM7B microphones" "Studio lighting" "Choice of set" "Technician on set" -}}
 {{- $packages := slice
-  (dict "name" "Record" "price" "399" "featured" false "inc" $base)
-  (dict "name" "Record + Live Camera Cut" "price" "550" "featured" false "inc" ($base | append "Live camera switching" "Ready-to-publish video"))
-  (dict "name" "Record + Edit" "price" "800" "featured" true "inc" ($base | append "Live camera switching" "Fully edited episode"))
+  (dict "name" "Record" "id" "record" "price" "399" "featured" false "inc" $base)
+  (dict "name" "Record + Live Camera Cut" "id" "live-cut" "price" "550" "featured" false "inc" ($base | append "Live camera switching"))
+  (dict "name" "Record + Edit" "id" "edit" "price" "800" "featured" true "inc" ($base | append "Live camera switching" "Fully edited episode"))
 -}}
 <body class="pk-body">
   {{ partial "blocks/header.html" . }}
@@ -25,7 +25,7 @@
         <ul>
           {{ range .inc }}<li class="yes">{{ . }}</li>{{ end }}
         </ul>
-        <a class="pk-btn{{ if .featured }} pk-btn--primary{{ end }}" href="{{ $book }}" target="_blank" rel="noopener">Book now</a>
+        <a class="pk-btn{{ if .featured }} pk-btn--primary{{ end }}" href="{{ $book }}/?service={{ .id }}" target="_blank" rel="noopener">Book now</a>
       </article>
       {{ end }}
     </section>
