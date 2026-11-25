@@ -29,12 +29,9 @@ Birdcast Entertainment Services LLC is a professional podcast studio and video p
 
 ## 4. Cancellation and Rescheduling
 
-- **Cancellations made more than 48 hours before your session:** full refund
-- **Cancellations made between 24 and 48 hours before your session:** 50% charge applies
-- **Cancellations made less than 24 hours before your session:** a charge of AED 150 will be applied
-- **No-shows without prior notice:** full session fee is charged
-- **Rescheduling requests made more than 48 hours in advance:** accommodated at no extra charge, subject to availability
-- **Rescheduling requests made less than 48 hours in advance:** treated as cancellations under the policy above
+- **More than 48 hours before your session:** free cancellation with a full refund, or free rescheduling subject to availability
+- **Between 24 and 48 hours before your session:** a 50% charge applies to cancellations. Alternatively, you may reschedule once free of charge
+- **Less than 24 hours before your session, or a no-show:** the full session fee is charged
 - Birdcast reserves the right to reschedule your session due to unforeseen circumstances. In such cases you will be offered an alternative date or a full refund
 
 ## 5. Studio Sessions
